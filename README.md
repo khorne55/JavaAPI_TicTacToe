@@ -1,1 +1,2 @@
-# JavaAPI_TicTacToe
+# Distributed Systems Project - TicTacToe Game
+

@@ -159,30 +159,12 @@ public class Game extends javax.swing.JFrame {
     
     public void gameStuff() {
         
-        int userID=Login.getUser();
+        int userID = 0;
         
         TicTacToe game = new TicTacToe();
-        Hangman myLink = game.getProxy();
-        int newGame=myLink.newGame(userID);
+        TTTWebService myLink = game.getProxy();
+        String newGame=myLink.newGame(userID);
         
-        jLabel1.setText("USER ID="+userID);
-        jLabel2.setText("GAME ID="+newGame);
-                
-        String guess=myLink.getWord(newGame);
-        wordsarr=guess.toCharArray();
-        System.out.println(guess);
-        
-        int commas=guess.length();
-        guessarr=guess.toCharArray();
-        
-        if(init==1) {
-        Arrays.fill(guessarr,'-');
-        init=0;
-        jLabel3.setText(String.valueOf(guessarr));
-        }
-        
-        //System.out.println(word.charAt(1));
-        //newGame=myLink.addGuess(word,userID,newGame);
     }
     
     

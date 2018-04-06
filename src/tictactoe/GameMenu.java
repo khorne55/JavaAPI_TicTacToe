@@ -27,7 +27,7 @@ public class GameMenu extends javax.swing.JFrame {
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
         
-        String openGamesResult = myLink.showOpenGames();
+        String openGamesResult = myLink.showOpenGames(); // Get open games from API
         String[] lines = openGamesResult.split("\n");
         
         DefaultTableModel model = (DefaultTableModel) openGames.getModel();
@@ -35,8 +35,18 @@ public class GameMenu extends javax.swing.JFrame {
             String[] parts = line.split(",");
             model.addRow(new Object[]{parts[1], parts[0]});
         }
+        
+        // Add event listener to Rows
+        openGames.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = openGames.rowAtPoint(evt.getPoint());
+                String gameID = String.valueOf(openGames.getModel().getValueAt(row, 1));
+                System.out.println(gameID);
+            }
+        });
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +74,7 @@ public class GameMenu extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
@@ -159,7 +169,9 @@ public class GameMenu extends javax.swing.JFrame {
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_ExitButtonActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -194,6 +206,8 @@ public class GameMenu extends javax.swing.JFrame {
                 new GameMenu().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -44,8 +44,6 @@ public class RegisterWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -67,8 +65,6 @@ public class RegisterWindow extends javax.swing.JFrame {
         jLabel3.setText("Username");
 
         jLabel4.setText("Password");
-
-        jLabel5.setText("E-Mail");
 
         jButton2.setText("Submit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -94,10 +90,6 @@ public class RegisterWindow extends javax.swing.JFrame {
         			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        						.addGroup(layout.createSequentialGroup()
-        							.addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        							.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
         						.addGroup(layout.createSequentialGroup()
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
         								.addComponent(jLabel1)
@@ -144,10 +136,6 @@ public class RegisterWindow extends javax.swing.JFrame {
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         				.addComponent(jLabel4))
-        			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jLabel5))
         			.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jButton2)
@@ -168,7 +156,6 @@ public class RegisterWindow extends javax.swing.JFrame {
        String surname=jTextField2.getText();
        String username=jTextField3.getText();
        String password=jTextField4.getText();
-       String email=jTextField5.getText();
        String message="";
        
        System.out.println("HELLO");
@@ -216,7 +203,6 @@ public class RegisterWindow extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
-        jTextField5.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -263,11 +249,9 @@ public class RegisterWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel userMessage;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
 }

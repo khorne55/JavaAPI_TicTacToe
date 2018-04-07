@@ -1,8 +1,6 @@
 package tictactoe;
 
 
-import tictactoe.TTTWebService;
-import tictactoe.TTTWebService_Service;
 
 public class TicTacToe {
 

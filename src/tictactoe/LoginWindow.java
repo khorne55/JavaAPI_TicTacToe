@@ -133,8 +133,9 @@ public class LoginWindow extends javax.swing.JFrame {
         System.out.println(userCheck);
         
         
-        Game gameGUI =new Game();
-        gameGUI.show(); 
+        this.setVisible(false);
+        ListGames games=new ListGames();
+        games.getFrame().setVisible(true);
         
             
         //Switch Window

@@ -13,12 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import javax.swing.SwingConstants;
 
 public class ListGames {
 
 	public static String gameCheck="0";
+        public static int XO=0;
 	
 	private JFrame frame;
 
@@ -50,9 +53,11 @@ public class ListGames {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+                JPanel panel=new JPanel();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
+                panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton createButton = new JButton("Create Game");
 		createButton.addActionListener(new ActionListener() {
@@ -64,6 +69,7 @@ public class ListGames {
 
 		        try {
 		        	gameCheck=myLink.newGame(LoginWindow.getUser());
+                                XO=1;
 		        } catch (Exception ex) {
 		            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
 		        }
@@ -94,17 +100,18 @@ public class ListGames {
 				}
 				
 				while(counter<userList.size()) {
-					JButton list = new JButton("<html>Game Created by: "+userList.get(counter+1)+"<br>Game ID: "+userList.get(counter)+"<br>Creation Time: "+userList.get(counter+2)+" </html>");
+					JButton list = new JButton("<html>Game Created by: "+userList.get(counter+1)+"<br>Game ID: "+userList.get(counter)+" <br>Creation Time: "+userList.get(counter+2)+" </html>");
 					//gameCheck=Integer.valueOf(userList.get(counter-1));
-					frame.getContentPane().add(list);
+                                        panel.add(list);
 					counter+=3;
 					list.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						frame.setVisible(false);
+						//frame.setVisible(false);
 						String[] text=list.getText().split(" ");
 						gameCheck=text[5];
 						try {
 							myLink.joinGame(LoginWindow.getUser(),Integer.valueOf(gameCheck));
+                                                        XO=2;
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -114,6 +121,8 @@ public class ListGames {
 					}					
 					});
 				}
+                                JScrollPane scrollPane = new JScrollPane(panel);
+                                frame.add(scrollPane);
 				frame.getContentPane().revalidate();
 				frame.getContentPane().repaint();
 			}
@@ -125,7 +134,12 @@ public class ListGames {
     	return gameCheck;
     }
 
-	public JFrame getFrame() {
-		return frame;
-	}
+    public JFrame getFrame() {
+        return frame;
+    }
+      
+    public static int getXO() {
+        return XO;
+    }
+        
 }

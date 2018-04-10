@@ -36,30 +36,30 @@ public class LoginWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        usernameLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        usernameInput = new javax.swing.JTextField();
+        passwordInput = new javax.swing.JTextField();
+        registerBn = new javax.swing.JButton();
+        loginBn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Username");
+        usernameLabel.setText("Username");
 
-        jLabel2.setText("Password");
+        passwordLabel.setText("Password");
 
-        jButton2.setText("Clear");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        registerBn.setText("Register");
+        registerBn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                registerBnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Login");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        loginBn.setText("Login");
+        loginBn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                loginBnActionPerformed(evt);
             }
         });
         
@@ -74,18 +74,18 @@ public class LoginWindow extends javax.swing.JFrame {
         					.addGap(83)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addGroup(layout.createSequentialGroup()
-        							.addComponent(jButton2)
+        							.addComponent(registerBn)
         							.addGap(18)
-        							.addComponent(jButton3))
+        							.addComponent(loginBn))
         						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         							.addGroup(layout.createSequentialGroup()
-        								.addComponent(jLabel1)
+        								.addComponent(usernameLabel)
         								.addGap(18)
-        								.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
+        								.addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
         							.addGroup(layout.createSequentialGroup()
-        								.addComponent(jLabel2)
+        								.addComponent(passwordLabel)
         								.addGap(18)
-        								.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))))
+        								.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))))
         				.addGroup(layout.createSequentialGroup()
         					.addGap(128)
         					.addComponent(userMessage)))
@@ -98,16 +98,16 @@ public class LoginWindow extends javax.swing.JFrame {
         			.addComponent(userMessage)
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jLabel1)
-        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(usernameLabel)
+        				.addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jLabel2)
-        				.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(passwordLabel)
+        				.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(27)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jButton2)
-        				.addComponent(jButton3))
+        				.addComponent(registerBn)
+        				.addComponent(loginBn))
         			.addContainerGap(134, Short.MAX_VALUE))
         );
         getContentPane().setLayout(layout);
@@ -115,14 +115,15 @@ public class LoginWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTextField1.setText("");
-        jTextField2.setText("");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void registerBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBnActionPerformed
+        this.setVisible(false);
+        RegisterWindow register = new RegisterWindow();
+        register.show();
+    }//GEN-LAST:event_registerBnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String username=jTextField1.getText();
-        String password=jTextField2.getText();
+    private void loginBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBnActionPerformed
+        String username=usernameInput.getText();
+        String password=passwordInput.getText();
 
 
         
@@ -132,23 +133,16 @@ public class LoginWindow extends javax.swing.JFrame {
             
         System.out.println(userCheck);
         
+        if (userCheck > 0) {
+            this.setVisible(false);
+            ListGames games=new ListGames();
+            games.getFrame().setVisible(true);
+        } else {
+            System.out.println("Login Unsuccessful");
+        }
         
-        this.setVisible(false);
-        ListGames games=new ListGames();
-        games.getFrame().setVisible(true);
         
-            
-        //Switch Window
-      //  if(userCheck!=0) {
-      //  	this.setVisible(false);
-      //  	ListGames games=new ListGames();
-      //  	games.getFrame().setVisible(true);
-      //  } else {
-      //  	userMessage.setText("Login Incorrect");
-      //  }
-
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_loginBnActionPerformed
 
     
     public static int getUser() {
@@ -191,12 +185,12 @@ public class LoginWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton registerBn;
+    private javax.swing.JButton loginBn;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField usernameInput;
+    private javax.swing.JTextField passwordInput;
     private JLabel userMessage;
     // End of variables declaration//GEN-END:variables
 }

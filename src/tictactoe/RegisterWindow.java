@@ -36,47 +36,47 @@ public class RegisterWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        nameInput = new javax.swing.JTextField();
+        surnameInput = new javax.swing.JTextField();
+        usernameInput = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
+        surnameLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        passwordInput = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        submitBn = new javax.swing.JButton();
+        clearBn = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setToolTipText("");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nameInput.setToolTipText("");
+        nameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nameInputActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Name");
+        nameLabel.setText("Name");
 
-        jLabel2.setText("Surname");
+        surnameLabel.setText("Surname");
 
-        jLabel3.setText("Username");
+        usernameLabel.setText("Username");
 
-        jLabel4.setText("Password");
+        passwordLabel.setText("Password");
 
-        jButton2.setText("Submit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        submitBn.setText("Submit");
+        submitBn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                submitBnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        clearBn.setText("Clear");
+        clearBn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                clearBnActionPerformed(evt);
             }
         });
         
@@ -92,23 +92,23 @@ public class RegisterWindow extends javax.swing.JFrame {
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
         						.addGroup(layout.createSequentialGroup()
         							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addComponent(jLabel1)
-        								.addComponent(jLabel2)
-        								.addComponent(jLabel3))
+        								.addComponent(nameLabel)
+        								.addComponent(surnameLabel)
+        								.addComponent(usernameLabel))
         							.addGap(71)
         							.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        								.addComponent(jTextField3, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-        								.addComponent(jTextField1)
-        								.addComponent(jTextField2)))
+        								.addComponent(usernameInput, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+        								.addComponent(nameInput)
+        								.addComponent(surnameInput)))
         						.addGroup(layout.createSequentialGroup()
-        							.addComponent(jLabel4)
+        							.addComponent(passwordLabel)
         							.addGap(73)
-        							.addComponent(jTextField4, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)))
+        							.addComponent(passwordInput, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)))
         					.addGap(126))
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jButton3)
+        					.addComponent(clearBn)
         					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addComponent(jButton2)
+        					.addComponent(submitBn)
         					.addGap(118))))
         		.addGroup(layout.createSequentialGroup()
         			.addGap(165)
@@ -122,24 +122,24 @@ public class RegisterWindow extends javax.swing.JFrame {
         			.addComponent(userMessage)
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jLabel1))
+        				.addComponent(nameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(nameLabel))
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jLabel2))
+        				.addComponent(surnameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(surnameLabel))
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jLabel3))
+        				.addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(usernameLabel))
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jLabel4))
+        				.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(passwordLabel))
         			.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jButton2)
-        				.addComponent(jButton3))
+        				.addComponent(submitBn)
+        				.addComponent(clearBn))
         			.addGap(28))
         );
         getContentPane().setLayout(layout);
@@ -147,15 +147,15 @@ public class RegisterWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed
        
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nameInputActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       String name=jTextField1.getText();
-       String surname=jTextField2.getText();
-       String username=jTextField3.getText();
-       String password=jTextField4.getText();
+    private void submitBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBnActionPerformed
+       String name=nameInput.getText();
+       String surname=surnameInput.getText();
+       String username=usernameInput.getText();
+       String password=passwordInput.getText();
        String message="";
        
        System.out.println("HELLO");
@@ -170,25 +170,31 @@ public class RegisterWindow extends javax.swing.JFrame {
        } catch(Exception e) {
            if(registerResult.equals("ERROR-REPEAT")){
                System.out.println("ERROR-REPEAT");
+               message = "ERROR-REPEAT";
            } else if(registerResult.equals("ERROR-INSERT")){
                System.out.println("ERROR-INSERT");
+               message = "ERROR-INSERT";
            } else if(registerResult.equals("ERROR-RETRIEVE")){
                System.out.println("ERROR-RETRIEVE");
+               message = "ERROR-RETRIEVE";
            } else if(registerResult.equals("ERROR-DB")){
                System.out.println("ERROR-DB");
+               message = "ERROR-DB";
            }
        }
        if(pid==0) {
-           message="Cannot create user";
+           message +=" - Cannot create user";
        } else {
-           message="User Registered";
+           message ="User Registered";
+           this.setVisible(false);
+           LoginWindow login =new LoginWindow();
+           login.show();
        }
 
         
         userMessage.setText(message);
         
-        LoginWindow login =new LoginWindow();
-        login.show();
+        
         
        /* if(createCheck.equals("User Succesfully Created")) {
         	this.setVisible(false);
@@ -196,14 +202,14 @@ public class RegisterWindow extends javax.swing.JFrame {
         	games.getFrame().setVisible(true);
         }*/
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_submitBnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void clearBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBnActionPerformed
+        nameInput.setText("");
+        surnameInput.setText("");
+        usernameInput.setText("");
+        passwordInput.setText("");
+    }//GEN-LAST:event_clearBnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,16 +248,16 @@ public class RegisterWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jButton1; // dont think this is used?
+    private javax.swing.JButton submitBn;
+    private javax.swing.JButton clearBn;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel surnameLabel;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel userMessage;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField nameInput;
+    private javax.swing.JTextField surnameInput;
+    private javax.swing.JTextField usernameInput;
+    private javax.swing.JTextField passwordInput;
 }

@@ -89,7 +89,7 @@ public class Game {
                         menuBnActionPerformed(evt);
                     }
                 });
-                player.setBackground(Color.RED);
+
                 player.setOpaque(true);
 
                 list.addActionListener(new ActionListener() {
@@ -152,7 +152,13 @@ public class Game {
     }
 
     public void setPlayer(String text) {
-        player.setText(text);
+        if (text.equals("Your go")) {
+            player.setText(text);
+            player.setBackground(Color.GREEN);
+        } else {
+            player.setBackground(Color.RED);
+            player.setText(text);
+        }
     }
 
     public JFrame getFrame() {

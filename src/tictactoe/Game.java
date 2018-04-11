@@ -66,17 +66,8 @@ public class Game {
         List<JButton> buttonList = new ArrayList<JButton>();
         int[] x = new int[3];
         int[] y = new int[3];
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                JButton list = new JButton();
-                x[i] = i;
-                y[j] = j;
-                buttonList.add(list);
-                frame.getContentPane().add(list);
-                list.setText(String.valueOf(i) + " " + String.valueOf(j));
-
-                frame.getContentPane().add(exitBn);
+        
+        frame.getContentPane().add(exitBn);
                 exitBn.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         exitBnActionPerformed(evt);
@@ -91,6 +82,17 @@ public class Game {
                 });
 
                 player.setOpaque(true);
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                JButton list = new JButton();
+                x[i] = i;
+                y[j] = j;
+                buttonList.add(list);
+                frame.getContentPane().add(list);
+                list.setText(String.valueOf(i) + " " + String.valueOf(j));
+
+                
 
                 list.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {

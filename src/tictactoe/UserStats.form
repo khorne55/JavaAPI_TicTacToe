@@ -27,22 +27,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="gameHeader" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lossesLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="winsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="drawsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="wins" min="-2" max="-2" attributes="0"/>
-                          <Component id="draws" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="losses" min="-2" max="-2" attributes="0"/>
+                          <Component id="noWins" min="-2" max="-2" attributes="0"/>
+                          <Component id="noDraws" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="noLosses" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -58,22 +58,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="gameHeader" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="winsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="wins" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noWins" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="losses" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lossesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noLosses" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="draws" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="drawsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="noDraws" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="56" max="32767" attributes="0"/>
               <Component id="gameMenuButton" min="-2" max="-2" attributes="0"/>
@@ -83,7 +83,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="gameHeader">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="36" style="1"/>
@@ -91,34 +91,34 @@
         <Property name="text" type="java.lang.String" value="Tic-Tac-Toe"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="winsLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Your Wins"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lossesLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Your Losses"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="drawsLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Your Draws"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
     </Component>
-    <Component class="javax.swing.JLabel" name="wins">
+    <Component class="javax.swing.JLabel" name="noWins">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="losses">
+    <Component class="javax.swing.JLabel" name="noLosses">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="draws">
+    <Component class="javax.swing.JLabel" name="noDraws">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>

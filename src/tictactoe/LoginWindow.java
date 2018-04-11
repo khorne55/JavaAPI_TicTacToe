@@ -19,6 +19,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
 	
 	public static int userCheck=0;
+        public static String usernameCheck= "";
 	
     /**
      * Creates new form Login
@@ -129,6 +130,7 @@ public class LoginWindow extends javax.swing.JFrame {
         
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
+        usernameCheck = username;
         userCheck=myLink.login(username,password);
             
         System.out.println(userCheck);
@@ -147,6 +149,9 @@ public class LoginWindow extends javax.swing.JFrame {
     
     public static int getUser() {
     	return userCheck;
+    }
+    public static String getUsername() {
+    	return usernameCheck;
     }
     
     /**

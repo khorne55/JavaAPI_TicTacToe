@@ -13,11 +13,12 @@ import static tictactoe.ListGames.gameCheck;
  */
 public class PlayerMonitor implements Runnable {
 
-    private int timeout = 1000; // no point constantly pinging the web service (milliSec)
+    private int timeout = 200; // no point constantly pinging the web service (milliSec)
     private Thread t;
     private int gid;
     private int pid;
     private boolean play;
+    private boolean gameOver =  false;
     private Game gameInstance;
     private boolean running = true;
 
@@ -33,6 +34,7 @@ public class PlayerMonitor implements Runnable {
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
         int lastPlayer;
+        int win = 0;
         while (running) {
             try {
 
@@ -42,6 +44,7 @@ public class PlayerMonitor implements Runnable {
                     String lastLine = lines[lines.length - 1];
                     String[] player2 = lastLine.split(",");
                     lastPlayer = Integer.parseInt(player2[0]);
+                    win = Integer.parseInt(myLink.checkWin(gid));
                 } else {
                     if (ListGames.getXO() == 2) { // O goes first!
                         lastPlayer = 0;
@@ -49,8 +52,25 @@ public class PlayerMonitor implements Runnable {
                         lastPlayer = pid;
                     }
                 }
-
-                if (pid != lastPlayer) {
+                if (win > 0) {
+                    gameOver = true;
+                    switch (win) {
+                        case 1:
+                            System.out.println("Game Over: P1 Wins");
+                            gameInstance.setPlayer("Game Over: P1 Wins");
+                            break;
+                        case 2:
+                            System.out.println("Game Over: P2 Wins");
+                            gameInstance.setPlayer("Game Over: P2 Wins");
+                            break;
+                        case 3:
+                            System.out.println("Game Over: Draw");
+                            gameInstance.setPlayer("Game Over: Draw");
+                            break;
+                        default:
+                            break;
+                    }
+                } else if (pid != lastPlayer) {
                     System.out.println("This player's go ");
                     play = true;
                     gameInstance.setPlayer("Your go");
@@ -73,11 +93,14 @@ public class PlayerMonitor implements Runnable {
             t.start();
         }
     }
-    
-    public boolean canPlay(){
+
+    public boolean canPlay() {
         return play;
     }
-    
+    public boolean gameOver() {
+        return gameOver;
+    }
+
     public void terminate() {
         running = false;
     }

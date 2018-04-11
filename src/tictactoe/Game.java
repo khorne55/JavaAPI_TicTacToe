@@ -94,7 +94,7 @@ public class Game {
 
                 list.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        if (monitor.canPlay()) {
+                        if (monitor.canPlay() && !monitor.gameOver()) {
                             try {
                                 String[] text = list.getText().split(" ");
                                 String squareCheck = "";
@@ -152,12 +152,27 @@ public class Game {
     }
 
     public void setPlayer(String text) {
-        if (text.equals("Your go")) {
-            player.setText(text);
-            player.setBackground(Color.GREEN);
-        } else {
-            player.setBackground(Color.RED);
-            player.setText(text);
+        switch (text) {
+            case "Your go":
+                player.setText(text);
+                player.setBackground(Color.GREEN);
+                break;
+            case "Game Over: P1 Wins":
+                player.setText(text);
+                player.setBackground(Color.BLUE);
+                break;
+            case "Game Over: P2 Wins":
+                player.setText(text);
+                player.setBackground(Color.YELLOW);
+                break;
+            case "Game Over: Draw":
+                player.setText(text);
+                player.setBackground(Color.PINK);
+                break;
+            default:
+                player.setBackground(Color.RED);
+                player.setText(text);
+                break;
         }
     }
 

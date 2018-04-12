@@ -61,13 +61,14 @@ public class ListGames {
         frame.getContentPane().setLayout(new GridLayout(0, 2, 50, 50));
         panel.setLayout(new GridLayout(0, 1, 0, 0));
 
+        //Initilize TTT Service
+        TicTacToe game = new TicTacToe();
+        TTTWebService myLink = game.getProxy();
+
+        //Create Game Starts Here
         JButton createButton = new JButton("Create Game");
         createButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Create Game
-                TicTacToe game = new TicTacToe();
-                TTTWebService myLink = game.getProxy();
-                System.out.println(LoginWindow.getUser());
 
                 try {
                     gameCheck = myLink.newGame(LoginWindow.getUser());
@@ -83,56 +84,58 @@ public class ListGames {
         });
         frame.getContentPane().add(createButton);
 
-        JButton joinButton = new JButton("Join Game");
-        joinButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.getContentPane().setLayout(new GridLayout(0, 1, 50, 50));
-                panel.setLayout(new GridLayout(0, 1, 0, 0));
-                frame.getContentPane().remove(leaderBoardButton);
-                frame.getContentPane().remove(userStatsButton);
-                List<String> userList = new ArrayList<String>();
-                int counter = 0;
-                //Join Game
-                frame.getContentPane().remove(createButton);
-                frame.getContentPane().remove(joinButton);
+        //Join Game Starts Here
+        JButton joinButton = new JButton("No Games Available");
+        if (!myLink.showOpenGames().equals("ERROR-NOGAMES")) {
+            joinButton.setText("Join Game");
+            joinButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    frame.getContentPane().setLayout(new GridLayout(0, 1, 50, 50));
+                    panel.setLayout(new GridLayout(0, 1, 0, 0));
+                    frame.getContentPane().remove(leaderBoardButton);
+                    frame.getContentPane().remove(userStatsButton);
+                    int counter = 0;
+                    //Join Game
+                    frame.getContentPane().remove(createButton);
+                    frame.getContentPane().remove(joinButton);
 
-                TicTacToe game = new TicTacToe();
-                TTTWebService myLink = game.getProxy();
+                    List<String> userList = new ArrayList<String>();
+                    try {
+                        userList = Arrays.asList(myLink.showOpenGames().split(",|\\\n"));
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
 
-                try {
-                    userList = Arrays.asList(myLink.showOpenGames().split(",|\\\n"));
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-
-                while (counter < userList.size()) {
-                    JButton list = new JButton("<html>Game Created by: " + userList.get(counter + 1) + "<br>Game ID: " + userList.get(counter) + " <br>Creation Time: " + userList.get(counter + 2) + " </html>");
-                    //gameCheck=Integer.valueOf(userList.get(counter-1));
-                    panel.add(list);
-                    counter += 3;
-                    list.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            //frame.setVisible(false);
-                            String[] text = list.getText().split(" ");
-                            gameCheck = text[5];
-                            try {
-                                myLink.joinGame(LoginWindow.getUser(), Integer.valueOf(gameCheck));
-                                XO = 2;
-                            } catch (Exception e1) {
-                                // TODO Auto-generated catch block
-                                e1.printStackTrace();
+                    while (counter < userList.size()) {
+                        JButton list = new JButton("<html>Game Created by: " + userList.get(counter + 1) + "<br>Game ID: " + userList.get(counter) + " <br>Creation Time: " + userList.get(counter + 2) + " </html>");
+                        //gameCheck=Integer.valueOf(userList.get(counter-1));
+                        panel.add(list);
+                        counter += 3;
+                        list.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                frame.setVisible(false);
+                                String[] text = list.getText().split(" ");
+                                gameCheck = text[5];
+                                try {
+                                    myLink.joinGame(LoginWindow.getUser(), Integer.valueOf(gameCheck));
+                                    XO = 2;
+                                } catch (Exception e1) {
+                                    // TODO Auto-generated catch block
+                                    e1.printStackTrace();
+                                }
+                                Game game = new Game();
+                                game.getFrame().setVisible(true);
                             }
-                            Game game = new Game();
-                            game.getFrame().setVisible(true);
-                        }
-                    });
+                        });
+                    }
+
+                    JScrollPane scrollPane = new JScrollPane(panel);
+                    frame.add(scrollPane);
+                    frame.getContentPane().revalidate();
+                    frame.getContentPane().repaint();
                 }
-                JScrollPane scrollPane = new JScrollPane(panel);
-                frame.add(scrollPane);
-                frame.getContentPane().revalidate();
-                frame.getContentPane().repaint();
-            }
-        });
+            });
+        }
         frame.getContentPane().add(joinButton);
 
         // user stats button
@@ -145,7 +148,7 @@ public class ListGames {
             }
         });
         frame.getContentPane().add(userStatsButton);
-        
+
         // LeaderBoard button
         leaderBoardButton = new JButton("LeaderBoard");
         leaderBoardButton.addActionListener(new ActionListener() {

@@ -35,16 +35,25 @@ public class PlayerMonitor implements Runnable {
         TTTWebService myLink = game.getProxy();
         int lastPlayer;
         int win = 0;
+  
         while (running) {
             try {
 
                 String result = myLink.getBoard(gid);
                 if (!result.equals("ERROR-NOMOVES")) {
-                    String[] lines = result.split("\n");
-                    String lastLine = lines[lines.length - 1];
-                    String[] player2 = lastLine.split(",");
-                    lastPlayer = Integer.parseInt(player2[0]);
+                    int counter = 0;
+                    String[] board=result.split(",|\\\n");
+                    lastPlayer = Integer.parseInt(board[board.length-3]);
                     win = Integer.parseInt(myLink.checkWin(gid));
+                    while(counter < board.length){
+                        if(Integer.valueOf(board[counter])!=pid) {
+                            int x=Integer.valueOf(board[counter+1]);
+                            int y=Integer.valueOf(board[counter+2]);
+                            
+                            gameInstance.updateBoard(x,y);
+                        }
+                        counter+=3;
+                    }
                 } else {
                     if (ListGames.getXO() == 2) { // O goes first!
                         lastPlayer = 0;

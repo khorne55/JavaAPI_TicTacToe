@@ -22,6 +22,7 @@ public class Game {
     private JButton player;
     private JButton menuBn;
     private PlayerMonitor monitor;
+    List<JButton> buttonList;
 
     /**
      * Launch the application.
@@ -63,25 +64,9 @@ public class Game {
         monitor = new PlayerMonitor(Integer.valueOf(gameCheck), LoginWindow.getUser(), this);
         monitor.start();
 
-        List<JButton> buttonList = new ArrayList<JButton>();
+        buttonList = new ArrayList<JButton>();
         int[] x = new int[3];
         int[] y = new int[3];
-        
-        frame.getContentPane().add(exitBn);
-                exitBn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        exitBnActionPerformed(evt);
-                    }
-                });
-                frame.getContentPane().add(player);
-                frame.getContentPane().add(menuBn);
-                menuBn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        menuBnActionPerformed(evt);
-                    }
-                });
-
-                player.setOpaque(true);
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -92,7 +77,7 @@ public class Game {
                 frame.getContentPane().add(list);
                 list.setText(String.valueOf(i) + " " + String.valueOf(j));
 
-                
+                player.setOpaque(true);
 
                 list.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -137,6 +122,20 @@ public class Game {
                 });
             }
         }
+
+        frame.getContentPane().add(exitBn);
+        exitBn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitBnActionPerformed(evt);
+            }
+        });
+        frame.getContentPane().add(player);
+        frame.getContentPane().add(menuBn);
+        menuBn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBnActionPerformed(evt);
+            }
+        });
     }
 
     private void exitBnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +152,23 @@ public class Game {
         games.getFrame().setVisible(true);
     }
 
+    public void updateBoard(int x,int y) {
+        String XO="";
+        if (ListGames.getXO() == 1) {
+            XO=("O");
+        } else if (ListGames.getXO() == 2) {
+            XO=("X");
+        }
+        
+        if(x==0) {
+            buttonList.get(y).setText(XO);
+        } else if(x==1) {
+            buttonList.get(x+y+2).setText(XO);
+        } else if(x==2) {
+            buttonList.get(x+y+4).setText(XO);
+        }
+    }
+    
     public void setPlayer(String text) {
         switch (text) {
             case "Your go":

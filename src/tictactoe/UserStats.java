@@ -190,7 +190,6 @@ public class UserStats extends javax.swing.JFrame {
                 }
 
             }
-            System.out.println("Wins, losses, draws:" + wins + " " + losses + " " + draws);
             noWins.setText(String.valueOf(wins));
             noDraws.setText(String.valueOf(draws));
             noLosses.setText(String.valueOf(losses));

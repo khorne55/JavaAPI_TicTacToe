@@ -130,12 +130,13 @@ public class LoginWindow extends javax.swing.JFrame {
         
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
-        usernameCheck = username;
+        
         userCheck=myLink.login(username,password);
             
         System.out.println(userCheck);
         
         if (userCheck > 0) {
+            usernameCheck = username;
             this.setVisible(false);
             ListGames games=new ListGames();
             games.getFrame().setVisible(true);

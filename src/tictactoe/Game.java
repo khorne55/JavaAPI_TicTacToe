@@ -23,6 +23,8 @@ public class Game {
     private JButton menuBn;
     private PlayerMonitor monitor;
     List<JButton> buttonList;
+    private int gid;
+    private int uid;
 
     /**
      * Launch the application.
@@ -44,7 +46,8 @@ public class Game {
      * Create the application.
      */
     public Game() {
-
+        gid = Integer.valueOf(ListGames.getGame());
+        uid = LoginWindow.getUser();
         initialize();
     }
 
@@ -61,7 +64,7 @@ public class Game {
         menuBn = new JButton("Menu");
 
         // Start player monitor to see who's turn it is.
-        monitor = new PlayerMonitor(Integer.valueOf(gameCheck), LoginWindow.getUser(), this);
+        monitor = new PlayerMonitor(Integer.valueOf(gameCheck), uid, this);
         monitor.start();
 
         buttonList = new ArrayList<JButton>();
@@ -89,25 +92,28 @@ public class Game {
                                 TicTacToe game = new TicTacToe();
                                 TTTWebService myLink = game.getProxy();
                                 if (!(xCheck.equals("X")) && !(xCheck.equals("O"))) {
-                                    squareCheck = myLink.checkSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), Integer.valueOf(ListGames.getGame()));
+                                    squareCheck = myLink.checkSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), gid);
                                 }
                                 //Check if the square is not taken and if both players are connected to the game.
-                                if (squareCheck.equals("0") && Integer.valueOf(myLink.getGameState(Integer.valueOf(ListGames.getGame()))) == 0) {
-                                    myLink.takeSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), Integer.valueOf(ListGames.getGame()), LoginWindow.getUser());
+                                if (squareCheck.equals("0") && Integer.valueOf(myLink.getGameState(gid)) == 0) {
+                                    myLink.takeSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), gid, uid);
                                     if (ListGames.getXO() == 1) {
                                         list.setText("X");
                                     } else if (ListGames.getXO() == 2) {
                                         list.setText("O");
                                     }
                                     list.repaint();
-                                    System.out.println("Win:" + myLink.checkWin(Integer.valueOf(ListGames.getGame())));
-                                    String win = myLink.checkWin(Integer.valueOf(ListGames.getGame()));
+                                    System.out.println("Win:" + myLink.checkWin(gid));
+                                    String win = myLink.checkWin(gid);
                                     if (win.equals("1")) {
                                         System.out.println("Player 1 wins");
+                                        myLink.setGameState(gid, 1);
                                     } else if (win.equals("2")) {
                                         System.out.println("Player 2 wins");
+                                        myLink.setGameState(gid, 2);
                                     } else if (win.equals("3")) {
                                         System.out.println("Players drew");
+                                        myLink.setGameState(gid, 3);
                                     }
                                 } else {
                                     System.out.println("Square Taken");
@@ -175,15 +181,15 @@ public class Game {
                 player.setText(text);
                 player.setBackground(Color.GREEN);
                 break;
-            case "Game Over: P1 Wins":
+            case "P1 Wins":
                 player.setText(text);
                 player.setBackground(Color.BLUE);
                 break;
-            case "Game Over: P2 Wins":
+            case "P2 Wins":
                 player.setText(text);
                 player.setBackground(Color.YELLOW);
                 break;
-            case "Game Over: Draw":
+            case "Draw":
                 player.setText(text);
                 player.setBackground(Color.PINK);
                 break;

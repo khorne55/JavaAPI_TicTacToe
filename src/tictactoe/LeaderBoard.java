@@ -5,6 +5,9 @@
  */
 package tictactoe;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author puser
@@ -16,6 +19,7 @@ public class LeaderBoard extends javax.swing.JFrame {
      */
     public LeaderBoard() {
         initComponents();
+        getLeaderBoard();
     }
 
     /**
@@ -27,29 +31,29 @@ public class LeaderBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        gameHeader = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         leaderBoard = new javax.swing.JTable();
         gameMenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Tic-Tac-Toe");
+        gameHeader.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        gameHeader.setText("Tic-Tac-Toe");
 
         leaderBoard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "UserID", "UserName", "Wins", "Losses", "Draws"
+                "UserName", "Wins", "Losses", "Draws"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -66,7 +70,6 @@ public class LeaderBoard extends javax.swing.JFrame {
             leaderBoard.getColumnModel().getColumn(1).setResizable(false);
             leaderBoard.getColumnModel().getColumn(2).setResizable(false);
             leaderBoard.getColumnModel().getColumn(3).setResizable(false);
-            leaderBoard.getColumnModel().getColumn(4).setResizable(false);
         }
 
         gameMenuButton.setText("Game Menu");
@@ -88,7 +91,7 @@ public class LeaderBoard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jLabel1))
+                        .addComponent(gameHeader))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addComponent(gameMenuButton)))
@@ -98,7 +101,7 @@ public class LeaderBoard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addComponent(gameHeader)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -111,6 +114,9 @@ public class LeaderBoard extends javax.swing.JFrame {
 
     private void gameMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameMenuButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        ListGames games = new ListGames();
+        games.getFrame().setVisible(true);
     }//GEN-LAST:event_gameMenuButtonActionPerformed
 
     /**
@@ -148,9 +154,73 @@ public class LeaderBoard extends javax.swing.JFrame {
         });
     }
 
+    // wins, losses and draws for each player
+    private void getLeaderBoard() {
+        TicTacToe game = new TicTacToe();
+        TTTWebService myLink = game.getProxy();
+        int win;
+        int p1;
+        int p2;
+        ArrayList<String> usernames = new ArrayList<>();
+        ArrayList<Integer> wins = new ArrayList<>();
+        ArrayList<Integer> losses = new ArrayList<>();
+        ArrayList<Integer> draws = new ArrayList<>();
+        
+        // generate array with all usernames
+        String myGames = myLink.leagueTable();
+        if (!myGames.equals("ERROR-NOGAMES") || !myGames.equals("ERROR-DB")) {
+            String[] lines = myGames.split("\n");
+            for (String line : lines) {
+                String[] result = line.split(",");
+                try {
+                    if (!usernames.contains(result[1])) { // if username hasn't been added, add it
+                        usernames.add(result[1]);
+                        wins.add(0);
+                        losses.add(0);
+                        draws.add(0);
+                    }
+                    if (!usernames.contains(result[2])) { // if username hasn't been added, add it
+                        usernames.add(result[2]);
+                        wins.add(0);
+                        losses.add(0);
+                        draws.add(0);
+                    }
+                    win = Integer.parseInt(result[3]);
+                    p1 = usernames.indexOf(result[1]);
+                    p2 = usernames.indexOf(result[2]);
+                    switch (win) {
+                        case 1: // P1 won
+                            wins.set(p1, wins.get(p1) + 1);
+                            losses.set(p2, losses.get(p2) + 1);
+                            break;
+                        case 2: // P2 won
+                            wins.set(p2, wins.get(p2) + 1);
+                            losses.set(p1, losses.get(p1) + 1);
+                            break;
+                        case 3: // Draw
+                            draws.set(p1, draws.get(p1) + 1);
+                            draws.set(p2, draws.get(p2) + 1);
+                            break;
+                        default:
+                            break;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error checking leagueTable:" + e);
+                }
+            }
+            // generate the leaderboard table
+            DefaultTableModel model = (DefaultTableModel) leaderBoard.getModel();
+            for (String username : usernames) {
+                int i = usernames.indexOf(username);
+                model.addRow(new Object[]{username, wins.get(i), losses.get(i), draws.get(i)});
+            }
+        }
+
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel gameHeader;
     private javax.swing.JButton gameMenuButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable leaderBoard;
     // End of variables declaration//GEN-END:variables

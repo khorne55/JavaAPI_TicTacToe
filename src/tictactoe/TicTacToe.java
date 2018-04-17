@@ -12,6 +12,9 @@ The login window is opened to allow the user to login.
  */
 package tictactoe;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 public class TicTacToe {
 
     private final TTTWebService proxy;
@@ -33,8 +36,20 @@ public class TicTacToe {
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
 
+        
+        try {
+            // Set System L&F
+            UIManager.setLookAndFeel(
+            UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            // handle exception
+         }
+        // handle exception
+        // handle exception
+        // handle exception
+        
         LoginWindow login = new LoginWindow(); // open the login window
-        login.show();
+        login.setVisible(true);
     }
 
 }

@@ -62,7 +62,7 @@ public class PlayerMonitor implements Runnable {
                         counter += 3;
                     }
                 } else { // if there are no moves on the board, set the initial conditions
-                    if (GameMenu.getXO() == 2) { // P2 - O goes first!
+                    if (GameMenu.getXO() == 1) { // P2 - O goes first!
                         lastPlayer = 0;
                     } else {
                         lastPlayer = pid;

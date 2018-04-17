@@ -1,26 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+LoginWindow
+
+17/04/2018
+Ricky Kearney - 14141647
+Piotr Kurzynoga - 14143097
+
+This class creates a JFrame where the user can input login details.
+Login details are passed to the web service API for validation:
+If login is successful the user is passed to the menu
+if the login fails the user is propted to reenter the details.
+
  */
 package tictactoe;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 
-/**
- *
- * @author puser
- */
 public class LoginWindow extends javax.swing.JFrame {
 
-	
-	public static int userCheck=0;
-        public static String usernameCheck= "";
-	
+    private static int userCheck = 0; // holds the logged in users ID
+    private static String usernameCheck = ""; // holds logged in users username
+
     /**
      * Creates new form Login
      */
@@ -63,98 +64,98 @@ public class LoginWindow extends javax.swing.JFrame {
                 loginBnActionPerformed(evt);
             }
         });
-        
+
         userMessage = new JLabel("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(83)
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addGroup(layout.createSequentialGroup()
-        							.addComponent(registerBn)
-        							.addGap(18)
-        							.addComponent(loginBn))
-        						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        							.addGroup(layout.createSequentialGroup()
-        								.addComponent(usernameLabel)
-        								.addGap(18)
-        								.addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
-        							.addGroup(layout.createSequentialGroup()
-        								.addComponent(passwordLabel)
-        								.addGap(18)
-        								.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))))
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(128)
-        					.addComponent(userMessage)))
-        			.addContainerGap(185, Short.MAX_VALUE))
+                layout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(83)
+                                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(registerBn)
+                                                                .addGap(18)
+                                                                .addComponent(loginBn))
+                                                        .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                                                                .addGroup(layout.createSequentialGroup()
+                                                                        .addComponent(usernameLabel)
+                                                                        .addGap(18)
+                                                                        .addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(layout.createSequentialGroup()
+                                                                        .addComponent(passwordLabel)
+                                                                        .addGap(18)
+                                                                        .addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(128)
+                                                .addComponent(userMessage)))
+                                .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(26)
-        			.addComponent(userMessage)
-        			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(usernameLabel)
-        				.addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(passwordLabel)
-        				.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(27)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(registerBn)
-        				.addComponent(loginBn))
-        			.addContainerGap(134, Short.MAX_VALUE))
+                layout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(26)
+                                .addComponent(userMessage)
+                                .addGap(18)
+                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(usernameLabel)
+                                        .addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(18)
+                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(passwordLabel)
+                                        .addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(27)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(registerBn)
+                                        .addComponent(loginBn))
+                                .addContainerGap(134, Short.MAX_VALUE))
         );
         getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // register button action listener
     private void registerBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBnActionPerformed
-        this.setVisible(false);
-        RegisterWindow register = new RegisterWindow();
+        this.setVisible(false); // close this window
+        RegisterWindow register = new RegisterWindow(); // open the register window
         register.show();
     }//GEN-LAST:event_registerBnActionPerformed
 
+    // login button action listener
     private void loginBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBnActionPerformed
-        String username=usernameInput.getText();
-        String password=passwordInput.getText();
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
 
-
-        
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
-        
-        userCheck=myLink.login(username,password);
-            
-        System.out.println(userCheck);
-        
-        if (userCheck > 0) {
+
+        userCheck = myLink.login(username, password); // call the webservice and check user login details
+
+        if (userCheck > 0) { // a valid login will have ID > 0
+            System.out.println("User ID = " + userCheck); // print to console
             usernameCheck = username;
             this.setVisible(false);
-            ListGames games=new ListGames();
+            GameMenu games = new GameMenu(); // show menu
             games.getFrame().setVisible(true);
         } else {
             System.out.println("Login Unsuccessful");
         }
-        
-        
+
     }//GEN-LAST:event_loginBnActionPerformed
 
-    
+    // get the logged In users ID
     public static int getUser() {
-    	return userCheck;
+        return userCheck;
     }
+
+    // get the logged in users username
     public static String getUsername() {
-    	return usernameCheck;
+        return usernameCheck;
     }
-    
+
     /**
      * @param args the command line arguments
      */

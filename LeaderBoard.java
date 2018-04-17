@@ -112,7 +112,7 @@ public class LeaderBoard extends javax.swing.JFrame {
     private void gameMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameMenuButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        ListGames games=new ListGames();
+        GameMenu games=new GameMenu();
         games.getFrame().setVisible(true);
     }//GEN-LAST:event_gameMenuButtonActionPerformed
 

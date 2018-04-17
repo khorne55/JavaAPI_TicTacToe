@@ -1,17 +1,23 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Register window
+
+17/04/2018
+Ricky Kearney - 14141647
+Piotr Kurzynoga - 14143097
+
+This class creates the register window where a new user can make an account.
+it takes in name, surname, username and password
+If the login was successful the user is sent to the login window.
+If the login was not successful they are prompted to reenter.
+
+
  */
 package tictactoe;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 
 /**
  *
@@ -79,68 +85,68 @@ public class RegisterWindow extends javax.swing.JFrame {
                 clearBnActionPerformed(evt);
             }
         });
-        
+
         userMessage = new JLabel("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap(99, Short.MAX_VALUE)
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        						.addGroup(layout.createSequentialGroup()
-        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        								.addComponent(nameLabel)
-        								.addComponent(surnameLabel)
-        								.addComponent(usernameLabel))
-        							.addGap(71)
-        							.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-        								.addComponent(usernameInput, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-        								.addComponent(nameInput)
-        								.addComponent(surnameInput)))
-        						.addGroup(layout.createSequentialGroup()
-        							.addComponent(passwordLabel)
-        							.addGap(73)
-        							.addComponent(passwordInput, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)))
-        					.addGap(126))
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(clearBn)
-        					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addComponent(submitBn)
-        					.addGap(118))))
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(165)
-        			.addComponent(userMessage)
-        			.addContainerGap(189, Short.MAX_VALUE))
+                layout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(99, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                                                        .addComponent(nameLabel)
+                                                                        .addComponent(surnameLabel)
+                                                                        .addComponent(usernameLabel))
+                                                                .addGap(71)
+                                                                .addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+                                                                        .addComponent(usernameInput, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                                                                        .addComponent(nameInput)
+                                                                        .addComponent(surnameInput)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(passwordLabel)
+                                                                .addGap(73)
+                                                                .addComponent(passwordInput, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)))
+                                                .addGap(126))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(clearBn)
+                                                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(submitBn)
+                                                .addGap(118))))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(165)
+                                .addComponent(userMessage)
+                                .addContainerGap(189, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(14)
-        			.addComponent(userMessage)
-        			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(nameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(nameLabel))
-        			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(surnameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(surnameLabel))
-        			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(usernameLabel))
-        			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(passwordLabel))
-        			.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(submitBn)
-        				.addComponent(clearBn))
-        			.addGap(28))
+                layout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(14)
+                                .addComponent(userMessage)
+                                .addGap(18)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(nameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nameLabel))
+                                .addGap(18)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(surnameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(surnameLabel))
+                                .addGap(18)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(usernameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(usernameLabel))
+                                .addGap(18)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(passwordLabel))
+                                .addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(submitBn)
+                                        .addComponent(clearBn))
+                                .addGap(28))
         );
         getContentPane().setLayout(layout);
 
@@ -148,64 +154,55 @@ public class RegisterWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed
-       
+
     }//GEN-LAST:event_nameInputActionPerformed
 
+    // On submitted button click
     private void submitBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBnActionPerformed
-       String name=nameInput.getText();
-       String surname=surnameInput.getText();
-       String username=usernameInput.getText();
-       String password=passwordInput.getText();
-       String message="";
-       
-       System.out.println("HELLO");
-       
-       TicTacToe game = new TicTacToe();
-       TTTWebService myLink = game.getProxy();
-       String registerResult;
-       int pid = 0;
-       registerResult = myLink.register(username, password, name, surname);
-       try {
-           pid = Integer.parseInt(registerResult);
-       } catch(Exception e) {
-           if(registerResult.equals("ERROR-REPEAT")){
-               System.out.println("ERROR-REPEAT");
-               message = "ERROR-REPEAT";
-           } else if(registerResult.equals("ERROR-INSERT")){
-               System.out.println("ERROR-INSERT");
-               message = "ERROR-INSERT";
-           } else if(registerResult.equals("ERROR-RETRIEVE")){
-               System.out.println("ERROR-RETRIEVE");
-               message = "ERROR-RETRIEVE";
-           } else if(registerResult.equals("ERROR-DB")){
-               System.out.println("ERROR-DB");
-               message = "ERROR-DB";
-           }
-       }
-       if(pid==0) {
-           message +=" - Cannot create user";
-       } else {
-           message ="User Registered";
-           this.setVisible(false);
-           LoginWindow login =new LoginWindow();
-           login.show();
-       }
+        String name = nameInput.getText(); // get inputted data
+        String surname = surnameInput.getText();
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
+        String message = "";
 
-        
-        userMessage.setText(message);
-        
-        
-        
-       /* if(createCheck.equals("User Succesfully Created")) {
-        	this.setVisible(false);
-        	ListGames games=new ListGames();
-        	games.getFrame().setVisible(true);
-        }*/
-        
+        TicTacToe game = new TicTacToe();
+        TTTWebService myLink = game.getProxy();
+        String registerResult;
+        int pid = 0; // user's ID
+        registerResult = myLink.register(username, password, name, surname); // send details to the webservice
+        try {
+            pid = Integer.parseInt(registerResult); // try get the new users ID
+        } catch (Exception e) { // catch any exception that is thrown by getting the user's ID from register result
+            if (registerResult.equals("ERROR-REPEAT")) {
+                System.out.println("ERROR-REPEAT");
+                message = "ERROR-REPEAT";
+            } else if (registerResult.equals("ERROR-INSERT")) {
+                System.out.println("ERROR-INSERT");
+                message = "ERROR-INSERT";
+            } else if (registerResult.equals("ERROR-RETRIEVE")) {
+                System.out.println("ERROR-RETRIEVE");
+                message = "ERROR-RETRIEVE";
+            } else if (registerResult.equals("ERROR-DB")) {
+                System.out.println("ERROR-DB");
+                message = "ERROR-DB";
+            }
+        }
+        if (pid == 0) { // Not a valid new user ID
+            message += " - Cannot create user";
+        } else { // user successfully registered
+            message = "User Registered";
+            this.setVisible(false); // close this window
+            LoginWindow login = new LoginWindow(); // open the login window where the user can login.
+            login.show();
+        }
+
+        System.out.println(message); // print the result to console
+
     }//GEN-LAST:event_submitBnActionPerformed
 
+    // clear button action listener
     private void clearBnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBnActionPerformed
-        nameInput.setText("");
+        nameInput.setText(""); // clear fields
         surnameInput.setText("");
         usernameInput.setText("");
         passwordInput.setText("");

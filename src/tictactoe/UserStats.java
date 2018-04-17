@@ -1,7 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+User Stats
+
+17/04/2018
+Ricky Kearney - 14141647
+Piotr Kurzynoga - 14143097
+
+This class creates a window which shows the current logged in user their stats.
+It calls the web service and checks the number or wins/ losses/ draws for the user.
+The stats are calculated with the checkWin function to ensure every play is correctly calculated, 
+instead of using the gameState function. 
+
  */
 package tictactoe;
 
@@ -11,17 +19,17 @@ package tictactoe;
  */
 public class UserStats extends javax.swing.JFrame {
 
-    private int uid;
-    private String username;
+    private final int uid; // User ID
+    private final String username; // Username
 
     /**
      * Creates new form UserStats
      */
     public UserStats() {
-        uid = LoginWindow.getUser();
-        username = LoginWindow.getUsername();
-        initComponents();
-        getStats();
+        uid = LoginWindow.getUser(); // get the logged in user's ID
+        username = LoginWindow.getUsername(); // get the logged in user's username
+        initComponents(); // generate the window
+        getStats(); // get user stats and update the window
     }
 
     /**
@@ -120,10 +128,11 @@ public class UserStats extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // game Menu button action listener
     private void gameMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameMenuButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        ListGames games = new ListGames();
+        this.setVisible(false); // close this window 
+        GameMenu games = new GameMenu(); // open the game menu
         games.getFrame().setVisible(true);
     }//GEN-LAST:event_gameMenuButtonActionPerformed
 
@@ -162,35 +171,36 @@ public class UserStats extends javax.swing.JFrame {
         });
     }
 
+    // get the user stats and update the window
     private void getStats() {
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
-        int wins = 0;
+        int wins = 0; // vars to hold the wins / losses/ draws
         int losses = 0;
         int draws = 0;
-        String myGames = myLink.showAllMyGames(uid);
-        if (!myGames.equals("ERROR-NOGAMES") || !myGames.equals("ERROR-DB")) {
+        String myGames = myLink.showAllMyGames(uid); // get all my games from the web service
+        if (!myGames.equals("ERROR-NOGAMES") || !myGames.equals("ERROR-DB")) { // once there are moves continue
             String[] lines = myGames.split("\n");
-            for (String line : lines) {
+            for (String line : lines) { // run through the resulting data
                 String[] result = line.split(",");
                 try {
-                    int winner = Integer.parseInt(myLink.checkWin(Integer.parseInt(result[0])));
-                    if (winner == 3) {
+                    int winner = Integer.parseInt(myLink.checkWin(Integer.parseInt(result[0]))); // try and get the winner from the data
+                    if (winner == 3) { // draw
                         draws++;
-                    } else if (winner == 2 && result[2].equals(username)) {
-                        wins++;
-                    } else if (winner == 1 && result[1].equals(username)) {
-                        wins++;
+                    } else if (winner == 2 && result[2].equals(username)) { // player 2 won, check if this player was p2
+                        wins++; // This player won
+                    } else if (winner == 1 && result[1].equals(username)) { // player 1 won, check if this player was p1
+                        wins++; // this player won
                     } else if (winner > 0) { // 0 is incomplete game
                         System.out.println("Game Lost");
-                        losses++;
+                        losses++; // this player lost
                     }
-                } catch (Exception e) {
+                } catch (Exception e) { // catch any exceptions
                     System.out.println("Error checking win of game:");
                 }
 
             }
-            noWins.setText(String.valueOf(wins));
+            noWins.setText(String.valueOf(wins)); // update the window with the calculated stats
             noDraws.setText(String.valueOf(draws));
             noLosses.setText(String.valueOf(losses));
         }

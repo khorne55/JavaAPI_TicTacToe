@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 
 import javax.swing.SwingConstants;
 
-public class ListGames {
+public class GameMenu {
 
     public static String gameCheck = "0";
     public static int XO = 0;
@@ -34,7 +34,7 @@ public class ListGames {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    ListGames window = new ListGames();
+                    GameMenu window = new GameMenu();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -46,7 +46,7 @@ public class ListGames {
     /**
      * Create the application.
      */
-    public ListGames() {
+    public GameMenu() {
         initialize();
     }
 

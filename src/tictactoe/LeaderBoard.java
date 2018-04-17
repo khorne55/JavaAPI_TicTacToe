@@ -1,7 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+LeaderBoard
+
+17/04/2018
+Ricky Kearney - 14141647
+Piotr Kurzynoga - 14143097
+
+This class shows the leaderboard window.
+It makes a table with all registered users and their stats.
+The stats are calculated based on the gameState function.
+
  */
 package tictactoe;
 
@@ -18,8 +25,8 @@ public class LeaderBoard extends javax.swing.JFrame {
      * Creates new form LeaderBoard
      */
     public LeaderBoard() {
-        initComponents();
-        getLeaderBoard();
+        initComponents(); // make the window 
+        getLeaderBoard(); // calculate stats and update the window
     }
 
     /**
@@ -115,7 +122,7 @@ public class LeaderBoard extends javax.swing.JFrame {
     private void gameMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameMenuButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        ListGames games = new ListGames();
+        GameMenu games = new GameMenu();
         games.getFrame().setVisible(true);
     }//GEN-LAST:event_gameMenuButtonActionPerformed
 
@@ -154,44 +161,44 @@ public class LeaderBoard extends javax.swing.JFrame {
         });
     }
 
-    // wins, losses and draws for each player
+    // calculate wins, losses and draws for each player. then update window
     private void getLeaderBoard() {
         TicTacToe game = new TicTacToe();
         TTTWebService myLink = game.getProxy();
-        int win;
-        int p1;
-        int p2;
-        ArrayList<String> usernames = new ArrayList<>();
+        int win; // win var
+        int p1; // player 1's ID
+        int p2; // Player 2's ID
+        ArrayList<String> usernames = new ArrayList<>(); // Arrays to hold a users stats. Arrays aligned with username array
         ArrayList<Integer> wins = new ArrayList<>();
         ArrayList<Integer> losses = new ArrayList<>();
         ArrayList<Integer> draws = new ArrayList<>();
-        
+
         // generate array with all usernames
-        String myGames = myLink.leagueTable();
-        if (!myGames.equals("ERROR-NOGAMES") || !myGames.equals("ERROR-DB")) {
+        String myGames = myLink.leagueTable(); // get data from web service
+        if (!myGames.equals("ERROR-NOGAMES") || !myGames.equals("ERROR-DB")) { // once there are games
             String[] lines = myGames.split("\n");
             for (String line : lines) {
                 String[] result = line.split(",");
                 try {
                     if (!usernames.contains(result[1])) { // if username hasn't been added, add it
-                        usernames.add(result[1]);
-                        wins.add(0);
+                        usernames.add(result[1]); // add the username
+                        wins.add(0); // set place holders
                         losses.add(0);
                         draws.add(0);
                     }
                     if (!usernames.contains(result[2])) { // if username hasn't been added, add it
-                        usernames.add(result[2]);
-                        wins.add(0);
+                        usernames.add(result[2]); // add the username
+                        wins.add(0); // set place holders
                         losses.add(0);
                         draws.add(0);
                     }
-                    win = Integer.parseInt(result[3]);
+                    win = Integer.parseInt(result[3]); // get the win from resulted data
                     p1 = usernames.indexOf(result[1]);
                     p2 = usernames.indexOf(result[2]);
                     switch (win) {
                         case 1: // P1 won
-                            wins.set(p1, wins.get(p1) + 1);
-                            losses.set(p2, losses.get(p2) + 1);
+                            wins.set(p1, wins.get(p1) + 1); // update wins for that player
+                            losses.set(p2, losses.get(p2) + 1); // update lossses for that player
                             break;
                         case 2: // P2 won
                             wins.set(p2, wins.get(p2) + 1);
@@ -204,19 +211,18 @@ public class LeaderBoard extends javax.swing.JFrame {
                         default:
                             break;
                     }
-                } catch (Exception e) {
+                } catch (Exception e) { // catch any problem
                     System.out.println("Error checking leagueTable:" + e);
                 }
             }
             // generate the leaderboard table
             DefaultTableModel model = (DefaultTableModel) leaderBoard.getModel();
-            for (String username : usernames) {
+            for (String username : usernames) { // for each user
                 int i = usernames.indexOf(username);
-                model.addRow(new Object[]{username, wins.get(i), losses.get(i), draws.get(i)});
+                model.addRow(new Object[]{username, wins.get(i), losses.get(i), draws.get(i)}); // add a row with that user stats
             }
         }
 
-        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gameHeader;

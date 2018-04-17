@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
-import static tictactoe.ListGames.gameCheck;
+import static tictactoe.GameMenu.gameCheck;
 
 public class Game {
 
@@ -88,19 +88,19 @@ public class Game {
                                 TicTacToe game = new TicTacToe();
                                 TTTWebService myLink = game.getProxy();
                                 if (!(xCheck.equals("X")) && !(xCheck.equals("O"))) {
-                                    squareCheck = myLink.checkSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), Integer.valueOf(ListGames.getGame()));
+                                    squareCheck = myLink.checkSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), Integer.valueOf(GameMenu.getGame()));
                                 }
                                 //Check if the square is not taken and if both players are connected to the game.
-                                if (squareCheck.equals("0") && Integer.valueOf(myLink.getGameState(Integer.valueOf(ListGames.getGame()))) == 0) {
-                                    myLink.takeSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), Integer.valueOf(ListGames.getGame()), LoginWindow.getUser());
-                                    if (ListGames.getXO() == 1) {
+                                if (squareCheck.equals("0") && Integer.valueOf(myLink.getGameState(Integer.valueOf(GameMenu.getGame()))) == 0) {
+                                    myLink.takeSquare(Integer.valueOf(text[0]), Integer.valueOf(text[1]), Integer.valueOf(GameMenu.getGame()), LoginWindow.getUser());
+                                    if (GameMenu.getXO() == 1) {
                                         list.setText("X");
-                                    } else if (ListGames.getXO() == 2) {
+                                    } else if (GameMenu.getXO() == 2) {
                                         list.setText("O");
                                     }
                                     list.repaint();
-                                    System.out.println("Win:" + myLink.checkWin(Integer.valueOf(ListGames.getGame())));
-                                    String win = myLink.checkWin(Integer.valueOf(ListGames.getGame()));
+                                    System.out.println("Win:" + myLink.checkWin(Integer.valueOf(GameMenu.getGame())));
+                                    String win = myLink.checkWin(Integer.valueOf(GameMenu.getGame()));
                                     if (win.equals("1")) {
                                         System.out.println("Player 1 wins");
                                     } else if (win.equals("2")) {
@@ -147,7 +147,7 @@ public class Game {
         // TODO add your handling code here:
         monitor.terminate();
         this.frame.setVisible(false);
-        ListGames games = new ListGames();
+        GameMenu games = new GameMenu();
         games.getFrame().setVisible(true);
     }
 

@@ -165,12 +165,14 @@ public class Game {
 
     // Terminate the player monitor thread and close the application on exit button press.
     private void exitBnActionPerformed(java.awt.event.ActionEvent evt) {
+        deleteGame(); // delete the game if its not won
         monitor.terminate(); // stop the thread
         System.exit(0); // exit
     }
 
     // Terminate the player monitor thread and show menu on menu button press
     private void menuBnActionPerformed(java.awt.event.ActionEvent evt) {
+        deleteGame(); // delete the game if its not won
         monitor.terminate(); // stop the thread
         this.frame.setVisible(false); // close this window
         GameMenu games = new GameMenu(); // open game menu window
@@ -229,5 +231,16 @@ public class Game {
 
     public JFrame getFrame() {
         return frame;
+    }
+    
+    // allow this user to delete the game if its not won
+    private void deleteGame(){
+        if (!monitor.gameOver()) {
+            TicTacToe game = new TicTacToe();
+            TTTWebService myLink = game.getProxy();
+            
+            myLink.deleteGame(gid, uid); // delete the game.
+            
+        }
     }
 }

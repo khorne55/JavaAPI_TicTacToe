@@ -4,4 +4,7 @@
     <system systemId="http://localhost:8080/TTTWebApplication/TTTWebService?xsd=1" uri="wsdl/localhost_8080/TTTWebApplication/TTTWebService.xsd_1.xsd"/>
     <system systemId="http://localhost:8888/TTTWebApplication/TTTWebService?wsdl" uri="wsdl/localhost_8888/TTTWebApplication/TTTWebService.wsdl"/>
     <system systemId="http://localhost:8888/TTTWebApplication/TTTWebService?xsd=1" uri="wsdl/localhost_8888/TTTWebApplication/TTTWebService.xsd_1.xsd"/>
+    <system systemId="http://10.150.8.89:8080/TTTWebApplication/TTTWebService?WSDL" uri="wsdl/10.150.8.89_8080/TTTWebApplication/TTTWebService.wsdl"/>
+    <system systemId="http://10.150.8.89:8080/TTTWebApplication/TTTWebService?xsd=1" uri="wsdl/10.150.8.89_8080/TTTWebApplication/TTTWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8888/TTTWebApplication/TTTWebService?WSDL" uri="wsdl/localhost_8888/TTTWebApplication/TTTWebService.wsdl"/>
 </catalog>

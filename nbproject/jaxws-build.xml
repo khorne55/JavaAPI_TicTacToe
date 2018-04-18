@@ -19,7 +19,7 @@
     <target name="wsimport-client-TTTWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/TTTWebService"/>
         <property name="wsdl-TTTWebService" location="xml-resources/web-service-references/TTTWebService/wsdl/localhost_8888/TTTWebApplication/TTTWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/TTTWebService" destdir="${build.generated.dir}/jax-wsCache/TTTWebService" wsdl="${wsdl-TTTWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8888/TTTWebApplication/TTTWebService?wsdl" xnocompile="true" xendorsed="true" package="tictactoe">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/TTTWebService" destdir="${build.generated.dir}/jax-wsCache/TTTWebService" wsdl="${wsdl-TTTWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8888/TTTWebApplication/TTTWebService?WSDL" xnocompile="true" xendorsed="true" package="tictactoe">
             <depends file="${wsdl-TTTWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/TTTWebService"/>
         </wsimport>

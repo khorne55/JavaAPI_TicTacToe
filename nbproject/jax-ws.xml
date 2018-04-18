@@ -3,7 +3,7 @@
   <services/>
   <clients>
     <client name="TTTWebService">
-      <wsdl-url>http://localhost:8888/TTTWebApplication/TTTWebService?wsdl</wsdl-url>
+      <wsdl-url>http://localhost:8888/TTTWebApplication/TTTWebService?WSDL</wsdl-url>
       <local-wsdl-file>localhost_8888/TTTWebApplication/TTTWebService.wsdl</local-wsdl-file>
       <package-name forceReplace="true">tictactoe</package-name>
       <catalog-file>catalog.xml</catalog-file>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8888/TTTWebApplication/TTTWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8888/TTTWebApplication/TTTWebService?WSDL</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

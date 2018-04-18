@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "TTTWebService", targetNamespace = "http://server.james.ttt/", wsdlLocation = "http://localhost:8888/TTTWebApplication/TTTWebService?wsdl")
+@WebServiceClient(name = "TTTWebService", targetNamespace = "http://server.james.ttt/", wsdlLocation = "http://localhost:8888/TTTWebApplication/TTTWebService?WSDL")
 public class TTTWebService_Service
     extends Service
 {
@@ -30,7 +30,7 @@ public class TTTWebService_Service
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8888/TTTWebApplication/TTTWebService?wsdl");
+            url = new URL("http://localhost:8888/TTTWebApplication/TTTWebService?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

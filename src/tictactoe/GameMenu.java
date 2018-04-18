@@ -94,12 +94,14 @@ public class GameMenu {
         frame.getContentPane().add(createButton); // add the button to the frame
 
         //Join Game button and action listener
-        JButton joinButton = new JButton("No Games Available"); // set default state
-        if (!myLink.showOpenGames().equals("ERROR-NOGAMES")) {
+        JButton joinButton = new JButton("No Games Available (Refresh)"); // set default state
+        if (!myLink.showOpenGames().equals("ERROR-NOGAMES")) { // Games available
             joinButton.setText("Join Game"); // if there are games, set the new text
-            // if the button is pressed
-            joinButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+        }
+        // if the button is pressed
+        joinButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!myLink.showOpenGames().equals("ERROR-NOGAMES")) { // if games are available
                     frame.getContentPane().setLayout(new GridLayout(0, 1, 50, 50));
                     panel.setLayout(new GridLayout(0, 1, 0, 0)); // set the new frame layout
                     frame.getContentPane().remove(leaderBoardButton); // remove unnessessery buttons
@@ -142,9 +144,14 @@ public class GameMenu {
                     frame.add(scrollPane);
                     frame.getContentPane().revalidate();
                     frame.getContentPane().repaint();
+                } else { // refresh list
+                   frame.setVisible(false); // close this window
+                   GameMenu games = new GameMenu(); // show menu
+                   games.getFrame().setVisible(true);
                 }
-            });
-        }
+            }
+        });
+
         frame.getContentPane().add(joinButton); // add the join button
 
         // user stats button and action listener
@@ -169,8 +176,8 @@ public class GameMenu {
         });
         frame.getContentPane().add(leaderBoardButton); // add the button
     }
-
     // gets the game ID being played
+
     public static String getGame() {
         return gameCheck;
     }

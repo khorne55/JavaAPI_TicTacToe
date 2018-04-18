@@ -13,7 +13,12 @@ The stats are calculated based on the gameState function.
 package tictactoe;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -221,6 +226,15 @@ public class LeaderBoard extends javax.swing.JFrame {
                 int i = usernames.indexOf(username);
                 model.addRow(new Object[]{username, wins.get(i), losses.get(i), draws.get(i)}); // add a row with that user stats
             }
+            
+            // allow the table rows to be sortable
+            TableRowSorter<TableModel> sorter = new TableRowSorter<>(leaderBoard.getModel());
+            leaderBoard.setRowSorter(sorter);
+            
+            // set the win column sorted and in descending order
+            List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+            sortKeys.add(new RowSorter.SortKey(1, SortOrder.DESCENDING));
+            sorter.setSortKeys(sortKeys); // set the sort
         }
 
     }
